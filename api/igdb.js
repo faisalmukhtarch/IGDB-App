@@ -6,12 +6,13 @@ const ACCESS_TOKEN = process.env.IGDB_ACCESS_TOKEN;
 export default async function handler(req, res) {
   console.log('Using IGDB_CLIENT_ID:', CLIENT_ID);
   console.log('Using IGDB_ACCESS_TOKEN:', ACCESS_TOKEN);
+
   if (req.method !== 'POST') {
     res.setHeader('Allow', 'POST');
     return res.status(405).json({ error: 'Method Not Allowed' });
   }
 
-  const query = req.body;
+  const query = req.body; // IGDB API query
 
   try {
     const response = await fetch('https://api.igdb.com/v4/games', {
